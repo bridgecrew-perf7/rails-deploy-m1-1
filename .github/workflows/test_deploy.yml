@@ -17,6 +17,11 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
+      - name: Cache bundle
+          uses: actions/cache@v2
+          with:
+            path: vendor/bundle
+            key: bundle-v1-${{ hashFiles('Gemfile.lock') }}
       - name: Run bundle install
         run: |
           bundle config --local path vendor/bundle
